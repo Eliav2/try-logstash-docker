@@ -1,0 +1,11 @@
+# simple filebeat configuration to send logs to logstash
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /var/log/*.log
+  document_type: log
+output.logstash:
+  hosts: ["logstash:5044"]
+# output.elasticsearch:
+#   hosts: ["localhost:9200"]
+#   index: "filebeat-%{+yyyy.MM.dd}"

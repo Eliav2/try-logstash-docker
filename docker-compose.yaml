@@ -1,0 +1,25 @@
+# simple docker compose for setting up mongodb and logstash
+
+services:
+  # mongo:
+  #   image: mongo
+  #   ports:
+  #     - "27017:27017"
+  #   # volumes:
+  #   #   - ./data:/data/db
+  #   # command: mongod --smallfiles
+  logstash:
+    # image: try-logstash:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    # command: bash
+    # tty: true
+  # beats:
+  #   image: docker.elastic.co/beats/filebeat:8.6.2 
+  #   depends_on:
+  #     - logstash
+  #   volumes:
+  #     - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
