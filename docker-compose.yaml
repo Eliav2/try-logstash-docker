@@ -8,10 +8,14 @@ services:
   #   # volumes:
   #   #   - ./data:/data/db
   #   # command: mongod --smallfiles
+  auth-server:
+    build: demo-auth-server
+    ports:
+      - "5000:5000"
   logstash:
     # image: try-logstash:latest
     build: 
-      context: .
+      context: logstash
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
