@@ -12,6 +12,8 @@ services:
     build: demo-auth-server
     ports:
       - "5000:5000"
+    networks:
+      - eliav-network
   logstash:
     # image: try-logstash:latest
     build: 
@@ -19,7 +21,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    # command: bash
+    networks:
+      - eliav-network
+#    command: logstash --config.test_and_exit -f /path/to/config/file
     # tty: true
   # beats:
   #   image: docker.elastic.co/beats/filebeat:8.6.2 
@@ -27,3 +31,6 @@ services:
   #     - logstash
   #   volumes:
   #     - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
+networks:
+  eliav-network:
+    external: true
